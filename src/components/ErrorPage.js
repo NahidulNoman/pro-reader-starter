@@ -1,12 +1,20 @@
 import React from 'react'
-import Header from './Header'
+import { useRouteError } from 'react-router-dom';
 
 const ErrorPage = () => {
+  const error = useRouteError();
+  console.log(error);
   return (
     <>
-      <Header />
-      <div className='flex flex-col min-h-[700px] justify-center items-center'>
-        <h1 className='text-4xl'>Ops! An Error Ocurred!</h1>
+           <div>
+        <h1>Ops! An Error Ocurred!</h1>
+        <br />
+        {error && (
+          <div>
+            <p>{error.statusText || error.message}</p>
+            <p>{error.status}</p>
+          </div>
+        )}
       </div>
     </>
   )
